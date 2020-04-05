@@ -1,0 +1,21 @@
+# indkoeb angiver strenge som input()-funktionen modtager
+indkoeb = "Skriv varer til indkøbslisten"
+indkoeb += "\nTryk a for at afslutte programmet.\n "
+# liste er fra start tom. Denne fyldes paa ved input()-funktionen
+liste = []
+
+# Loopet starter
+while True:
+    # indkoeb_x er en variabel som modtager input
+    indkoeb_x = input(indkoeb)
+    # if-statements siger at enten kan man afslutte med a eller A
+    if indkoeb_x == "a" or indkoeb_x == "A":
+        break #<- break = afslutter loop
+    # hvis vi ikke afslutter loopet    
+    else:
+        # printer "Jeg vil købe:" input()
+        print("Jeg vil købe: " + indkoeb_x + ".")
+    # liste modtager vores indkoeb og opdateres for hvert loop   
+    liste.append(indkoeb_x)
+# ved afslutning udskriver liste vores indkoebsliste
+print(liste)
