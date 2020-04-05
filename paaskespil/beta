@@ -1,0 +1,35 @@
+# Spil i Python
+
+
+
+
+
+# Game engine
+def start():
+    print("------------------------------") # 30 mellemrum
+    print("|                            |")
+    print("|                            |")
+    print("|       PÅSKESPILLET         |")
+    print("|           ####             |")
+    print("|                            |")
+    print("|          (S)PIL            |")
+    print("|            --              |")
+    print("|      (I)NSTRUKTIONER       |")
+    print("|            --              |")
+    print("|           (A)F             |")
+    print("|            --              |")
+    print("------------------------------")
+    min_input = input("> ")
+    print() # Luft
+    print(min_input)
+    if min_input == "s":
+        print("s virker")
+    if min_input == "i":
+        print("i virker")
+    if min_input == "a":
+        print
+        
+
+    
+liste = []
+start()
