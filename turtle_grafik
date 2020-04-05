@@ -1,0 +1,15 @@
+# Turtle Grafik
+# Kommentar 2
+
+import turtle # <- Import Turtle modulet
+from turtle import *
+
+t = turtle
+
+# for loop
+for i in range(50, 400):
+    t.forward(i)
+    t.right(77) # <- Vinkel
+    t.speed(0) # <- 0 er det hurtigste
+    t.shape("turtle") # <- "turtle", "triangle", "square"
+    t.pensize(3)
