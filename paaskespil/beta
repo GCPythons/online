@@ -1,35 +1,219 @@
-# Spil i Python
+# Moduler
+import sys
+import time
+import random
 
 
 
+# SPILLET
+def spil(liste):
 
+    # i stedet for print(), kan i skrive skrivemaskine()
+    time.sleep(2)
+    print("\nDu står ude foran kaninens port")
+    print("Vil du gå ind og hugge dens chokoladeæg")
+    print("Gå ind i kaninens hule (1)")
+    print("Se dig omkring (2)")
 
-# Game engine
-def start():
-    print("------------------------------") # 30 mellemrum
-    print("|                            |")
-    print("|                            |")
-    print("|       PÅSKESPILLET         |")
-    print("|           ####             |")
-    print("|                            |")
-    print("|          (S)PIL            |")
-    print("|            --              |")
-    print("|      (I)NSTRUKTIONER       |")
-    print("|            --              |")
-    print("|           (A)F             |")
-    print("|            --              |")
-    print("------------------------------")
-    min_input = input("> ")
-    print() # Luft
-    print(min_input)
-    if min_input == "s":
-        print("s virker")
-    if min_input == "i":
-        print("i virker")
-    if min_input == "a":
-        print
+    liste_over_valg = ["1", "2"]
+    mit_valg = valg(liste_over_valg)
+    
+    if mit_valg == "1":
+        print("\nDu går mod kaninens hule")
+        if "papir" in liste:
+            skrivemaskine("\nDu står nu foran kaninens dør")
+            skrivemaskine("\nMen du skal indtaste koden for at komme ind")
+            print("Ønsker du at indtaste koden?")
+            print("Ja (1)")
+            print("Nej, jeg løber min vej (2)")
+            liste_over_valg = ["1", "2"]
+            mit_valg = valg(liste_over_valg)
+            if mit_valg == "1":
+                # kode()-funktionen
+                print("\nKODE: XXXX") # koden er paa 4
+                kode()
+            elif mit_valg == "2":
+                # konkurrence ml hastighed
+                if hare() > helt():
+                    print("\nPåskeharen hører dig skramle ude foran sin dør")
+                    print("\nHan åbner døren og kræver et spil terning")
+                    print("Får du 4 eller over kan du få lov at gå")
+                    print("Ellers fanger haren dig, og sætter dig til at lave mad til ham resten af dine dage")
+                    # Terning
+                    terning = random.randint(1, 6)
+                    print("\nTerningen ruller")
+                    time.sleep(5)
+                    print("du slår", terning)
+                    if terning >= 4:
+                        print("\nPåskeharen lader dig slippe")
+                        return spil(liste)
+                    else:
+                        print("\nPåskeharen tager dig")
+                        print("Du skal vaske op og lave mad til ham resten af dit liv!")
+                        print("game over".upper())
+                        start(kode_v1)
+                else:
+                    print("\nDu slap væk fra påskeharen")
+                    liste.remove("papir")
+                    print("Årh nej!!! Vi mistede papiret!!")
+                    return spil(liste)
+
+        if "papir" != liste:
+            print("Du har ikke adgang")
+            return spil(liste)
+            
+            
+            
+        #return spil(liste)
+    
+    elif mit_valg == "2":
+        print("\nRundt omkring dig er der skov")
+        print("Dyr løber rundt, men du kan ikke finde kaninen")
+        print("Der ligger en beskidt hat i en mudderpøl")
+        print("Hvad gør du: ")
+        print("\nSamler den op (1)")
+        print("\nLader den ligge (2)")
+        liste_over_valg = ["1", "2"]
+        mit_valg = valg(liste_over_valg)
+        if mit_valg == "1":
+            print("\nInde i hatten ligger et stykke papir")
+            print("Du samler papiret op")
+            liste.append("papir")
+            return spil(liste)
+        elif mit_valg == "2":
+            print("Du lader hatten være")
+            return spil(liste)
+        else:
+            print("Du indtastede noget vrøvl")
+            return spil(liste)
+        
         
 
+    else:
+        print("Du må have tastet forkert")
+        return spil(liste)
+
+# Game Engine
+
+def hare():
+    hastighed = random.randint(20, 120)
+    return hastighed
+
+def helt():
+    hastighed = random.randint(5, 100)
+    return hastighed
+
+# skrivemaskine
+def skrivemaskine(str):
+    for i in str:
+        sys.stdout.write(i)
+        sys.stdout.flush()
+        time.sleep(0.12)
+
+def valg(liste_over_valg):
+    valg = input("\n? ")
+    if valg in liste_over_valg:
+        return valg
+    elif valg == "e":
+        exit(0)
+    else:
+        print("Forkert indtast")
+        return valg(liste_over_valg)
+
+def kode():
+    print("------------------------------") # 30
+    print("|                            |")
+    print("|                            |")
+    print("|        PÅSKEHAREN          |")
+    print("|           ####             |")
+    print("|                            |")
+    print("|         ABCD01234          |")
+    print("|         EFGH56789          |")
+    print("|            ---             |")
+    print("|         | | | | |          |")
+    print("|                            |")
+    print("|                            |")
+    print("------------------------------")
+    bogstav = ["A", "B", "C", "D", "E", "F", "G", "H"]
+    rand_bogstav = random.choice(bogstav)
+    # f-string = formatting{}
+    kode_v1 = f"{rand_bogstav}{random.randint(0, 9)}{random.randint(0, 9)}{random.randint(0, 9)}"
+    #print(kode_v1)
+    min_input = input(str(("[# # # #] > ")))
+    if min_input == "easter egg":
+        print(kode_v1)
+        min_input = input(str(("[# # # #] > ")))
+        if min_input == kode_v1:
+            print("\nDøren åbner op")
+            # Idé til senere: Påskeharen kan tage en lur eller
+            # være vågen. Vi kan benytte random til dette.
+            print("Påskeharen tager sig en lur")
+            skrivemaskine("\n........")
+            time.sleep(1.5)
+            skrivemaskine("\nPåskeægget ligger på bordet")
+            scene1(liste)
+            
+        else:
+            print("\t## forkert kode ##".upper())
+            skrivemaskine("\nDu finder ikke den korrekte kode")
+            return kode()
+
+    if min_input == kode_v1:
+        min_input = input(str(("[# # # #] > ")))
+        if min_input == kode_v1:
+            print("\nDøren åbner op")
+            # Idé til senere: Påskeharen kan tage en lur eller
+            # være vågen. Vi kan benytte random til dette.
+            print("Påskeharen tager sig en lur")
+            skrivemaskine("\n........")
+            time.sleep(1.5)
+            skrivemaskine("\nPåskeægget ligger på bordet")
+            scene1(liste)
+        
+    else:
+        print("\nZKSMKEKSMSKW")
+        return kode()
+        
+
+        
+def scene1(liste):
+    print("\nDu er nu i scene 1")
+
+def start():
     
-liste = []
+    print("------------------------------") # 30
+    print("|                            |")
+    print("|                            |")
+    print("|        PåskeSpillet        |")
+    print("|           ####             |")
+    print("|                            |")
+    print("|         (s)pil             |")
+    print("|           --               |")
+    print("|      (i)nstruktioner       |")
+    print("|           --               |")
+    print("|          (a)f              |")
+    print("|                            |")
+    print("------------------------------")
+    min_input = input("> ")
+    print() # luft
+    print(min_input)
+    if min_input == "s" or min_input == "S" or min_input == "spil":
+        skrivemaskine("\nPåskeharen har været vidt omkring med sine chokoladeæg")
+        skrivemaskine("\nMen hvis vi skal finde dem, så skal vi løse gåden")
+        time.sleep(0.5)
+        skrivemaskine("\n...................")
+        skrivemaskine("\nloader")
+        time.sleep(2)
+        skrivemaskine("\n...................")
+        print("\n.READY")
+        spil(liste)
+    if min_input == "i" or min_input == "I":
+        print("\nDette spil handler om at finde påskeharens chokoladeæg")
+        print("Undervejs får du nogle valg, som du skal træffe")
+        print("Træffer du en forkert beslutning er du GAME OVER")
+        return start()
+    if min_input == "a" or min_input == "A":
+        print("(C) Atle Winther")
+        return start()
+liste = [] # listen er tom
 start()
