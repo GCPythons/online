@@ -23,9 +23,9 @@ def spil(liste):
         if "papir" in liste:
             skrivemaskine("\nDu står nu foran kaninens dør")
             skrivemaskine("\nMen du skal indtaste koden for at komme ind")
-            print("Ønsker du at indtaste koden?")
-            print("Ja (1)")
-            print("Nej, jeg løber min vej (2)")
+            print("\nØnsker du at indtaste koden?")
+            print("\nJa (1)")
+            print("\nNej, jeg løber min vej (2)")
             liste_over_valg = ["1", "2"]
             mit_valg = valg(liste_over_valg)
             if mit_valg == "1":
@@ -51,7 +51,8 @@ def spil(liste):
                         print("\nPåskeharen tager dig")
                         print("Du skal vaske op og lave mad til ham resten af dit liv!")
                         print("game over".upper())
-                        start(kode_v1)
+                        # Vi kommer tilbage til start ved Game Over
+                        start()
                 else:
                     print("\nDu slap væk fra påskeharen")
                     liste.remove("papir")
@@ -93,12 +94,14 @@ def spil(liste):
         print("Du må have tastet forkert")
         return spil(liste)
 
-# Game Engine
+# GAME ENGINE
 
+# Harens hastighed
 def hare():
     hastighed = random.randint(20, 120)
     return hastighed
 
+# Heltens hastighed
 def helt():
     hastighed = random.randint(5, 100)
     return hastighed
@@ -110,6 +113,7 @@ def skrivemaskine(str):
         sys.stdout.flush()
         time.sleep(0.12)
 
+# Liste af valg
 def valg(liste_over_valg):
     valg = input("\n? ")
     if valg in liste_over_valg:
@@ -177,7 +181,46 @@ def kode():
 
         
 def scene1(liste):
-    print("\nDu er nu i scene 1")
+    # Time Sleep laver rytme fra .2 - .3
+    print("\nVil du tage påskeægget?\n")
+    time.sleep(.5)
+    print("Ja (1)\n")
+    time.sleep(.5)
+    print("Gå tilbage (2)\n")
+    time.sleep(.5)
+    print("Løb ud i påskeharens have (3)\n")
+    time.sleep(.5)
+    print("Se dig omkring (4)\n")
+
+    # Liste over valg
+    liste_over_valg = ["1", "2", "3", "4"]
+    mit_valg = valg(liste_over_valg)
+
+    # 
+    if mit_valg == "1":
+        print("Du sniger dig hen mod påskeægget\n")
+        skrivemaskine("zzZzZZZZzzzzZZZZzZZZ\n")
+        skrivemaskine("....\n")
+        print("
+        scene1(liste)
+
+    # Korrekt
+    elif mit_valg == "2":
+        print("Du lister dig ud af påskeharens hytte")
+        spil(liste)
+    elif mit_valg == "3":
+        print("Du har valgt 3")
+        scene1(liste)
+    elif mit_valg == "4":
+        print("Du har valgt 4")
+        scene1(liste)
+
+    # Korrekt
+    else:
+        print("Det forstår jeg ikke...")
+        scene1(liste)
+    
+    
 
 def start():
     
