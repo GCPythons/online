@@ -17,5 +17,10 @@ while True:
         print("Jeg vil købe: " + indkoeb_x + ".")
     # liste modtager vores indkoeb og opdateres for hvert loop   
     liste.append(indkoeb_x)
+    
 # ved afslutning udskriver liste vores indkoebsliste
 print(liste)
+
+with open('indkoeb_liste.txt', 'w') as f:
+    for item in liste:
+        f.write("%s\n" % item)
