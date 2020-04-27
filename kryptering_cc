@@ -1,0 +1,60 @@
+# Krypteringsprogram
+
+# Karakterer som kan krypteres/dekrypteres
+karakterer = "ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅabcdefghijklmnopqrstuvwxyzæøå !?."
+max_kar = len(karakterer)
+
+
+# Funktion som spørger til kryptering/dekryptering
+def setup():
+    while True:
+        print("Ønsker du at kryptere eller dekryptere: ")
+        mode = input().lower()
+        if mode in ["kryptere", "k", "dekryptere", "d"]:
+            return mode
+        else:
+            print("Skriv enten krypteret, k, dekrypteret eller d")
+
+# Tekst som skal krypteres/dekrypteres
+def besked():
+    print("Skriv tekst: ")
+    return input()
+
+# krytperingsnøglen
+def set_key():
+    key = 0
+    while True:
+        print(f"Skriv din nøgle her {-1}".format(max_kar))
+        # integer
+        key = int(input())
+        if(key >=1 and key <= max_kar):
+            return key
+
+# Funktionen som krytperer og dekrypterer vores tekst
+def kryptering(mode, tekst, key):
+    if mode[0] == "d":
+        key = -key
+    konverter = ""
+
+    for c in tekst:
+        # find næste karakter
+        k_index = karakterer.find(c)
+        if k_index == -1:
+            konverter += c
+        k_index += key
+        if k_index >= len(karakterer):
+            k_index -= len(karakterer)
+        elif k_index < 0:
+            k_index += len(karakterer)
+
+        konverter += karakterer[k_index]
+
+    return konverter
+        
+
+mode = setup()
+tekst = besked()
+key = set_key()
+print("Din konverterede tekst er: ")
+print(kryptering(mode, tekst, key))
+
