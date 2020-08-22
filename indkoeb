@@ -6,21 +6,24 @@ liste = []
 
 # Loopet starter
 while True:
-    # indkoeb_x er en variabel som modtager input
-    indkoeb_x = input(indkoeb)
+    # emner er en variabel som modtager input
+    emner = input(indkoeb)
     # if-statements siger at enten kan man afslutte med a eller A
-    if indkoeb_x == "a" or indkoeb_x == "A":
+    if emner == "a" or emner == "A":
         break #<- break = afslutter loop
     # hvis vi ikke afslutter loopet    
     else:
         # printer "Jeg vil købe:" input()
-        print("Jeg vil købe: " + indkoeb_x + ".")
+        print("Jeg vil købe: " + emner + ".")
     # liste modtager vores indkoeb og opdateres for hvert loop   
-    liste.append(indkoeb_x)
+    liste.append(emner)
+    # opdaterer vores liste i real time
+    print(liste)
     
 # ved afslutning udskriver liste vores indkoebsliste
 print(liste)
 
-with open('indkoeb_liste.txt', 'w') as f:
-    for item in liste:
-        f.write("%s\n" % item)
+# skriv indkoebslisten til tom txt-fil.
+with open('indkoeb_liste.txt', 'w') as fil:
+    for emner in liste:
+        fil.write("%s\n" % emner)
