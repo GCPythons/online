@@ -1,0 +1,51 @@
+# sten, saks, papir
+
+# sten > saks || saks < sten
+# saks > papir || papir < saks
+# papir > sten || sten < papir
+
+import random
+
+point = 0
+
+for i in range(3):
+    liste = ["sten", "saks", "papir"]
+    modstand = random.choice(liste)
+    
+    print("Sten, saks eller papir.")
+    valg = input("Vælg...")
+
+    if valg == "sten":
+        if modstand == "saks":
+            print("Yes!")
+            point += 1
+        else:
+            print("Øv")
+            #point -= 1
+    elif valg == "saks":
+        if modstand == "papir":
+            print("Yes!")
+            point += 1
+        else:
+            print("Øv")
+            #point -= 1
+    elif valg == "papir":
+        if modstand == "sten":
+            print("Yes!")
+            point += 1
+        else:
+            print("Øv")
+            #point -= 1
+    else:
+        print("Det forstod jeg ikke.")
+
+        
+print() # luft
+if point == 3:
+    print("Bedst af 3")
+elif point == 2:
+    print("2 af 3")
+elif point == 1:
+    print("1 af 3")
+else:
+    print("Ingen point!")
