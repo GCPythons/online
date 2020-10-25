@@ -1,0 +1,33 @@
+# RANDOM GENERATOR v2
+
+from random import randint
+
+x = 10
+
+for i in range(x):
+    y = randint(1, 1000)
+
+    i += 1
+
+    print("\nLoop: " + str(i))
+    print("Det tilfældige tal er: " + str(y))
+    if y < 100:
+        print(str(y) + " er mindre end 100")
+
+    elif y < 200:
+        print(str(y) + " er mindre end 200")
+    
+    elif y < 400:
+        print(str(y) + " er mindre end 400")
+
+    elif y < 650:
+        print(str(y) + " er mindre end 650")
+        
+    elif y < 800:
+        print(str(y) + " er mindre end 800")
+
+    elif y < 900:
+        print(str(y) + " er mindre end 900")
+
+    else:
+        print(str(y) + " er større end 900")
