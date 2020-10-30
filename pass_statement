@@ -1,0 +1,19 @@
+# pass statement
+
+from time import sleep
+
+navn = "Python"
+
+for i in navn:
+    if "h" in navn:
+        print("Giv mig et ", i.lower())
+        sleep(1)
+        pass
+    
+    print(i.upper())
+    print()
+    sleep(.8)
+
+print("Hvad siger det...")
+sleep(1)
+print(navn.upper())
